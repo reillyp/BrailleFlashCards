@@ -377,6 +377,7 @@ public class MainJFrame extends javax.swing.JFrame {
     // Flags Set by Baseline and Training buttons.
     boolean baselineABC = false;
     boolean trainingABC = false;
+    boolean rehearsalABC = false;
     boolean baselineNumSym = false;
     boolean trainingNumSym = false;
     boolean baselineComCombo = false;
@@ -392,6 +393,7 @@ public class MainJFrame extends javax.swing.JFrame {
     // Generic Baseline and Training flags.
     boolean baseline = false;
     boolean training = false;
+    boolean rehearsal = false;
     // Test type used to record Baseline or Training
     String testType;
     // CardListAll set flag
@@ -3523,8 +3525,8 @@ public class MainJFrame extends javax.swing.JFrame {
         jRadioButtonABC6 = new javax.swing.JRadioButton();
         jRadioButtonABCBaseline = new javax.swing.JRadioButton();
         jRadioButtonABCTrain = new javax.swing.JRadioButton();
-        jLabel7 = new javax.swing.JLabel();
         jRadioButtonABCRehearsal = new javax.swing.JRadioButton();
+        jLabel7 = new javax.swing.JLabel();
         numSym = new javax.swing.JPanel();
         numSymResetButton = new javax.swing.JButton();
         jLabelNumSymImg = new javax.swing.JLabel();
@@ -3537,13 +3539,13 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         jRadioButtonNumSymBaseline = new javax.swing.JRadioButton();
         jRadioButtonNumSymTrain = new javax.swing.JRadioButton();
+        jRadioButtonNumSym_Rehearsal = new javax.swing.JRadioButton();
         jRadioButtonNumSym1 = new javax.swing.JRadioButton();
         jRadioButtonNumSym2 = new javax.swing.JRadioButton();
         jRadioButtonNumSym3 = new javax.swing.JRadioButton();
         jRadioButtonNumSym4 = new javax.swing.JRadioButton();
         jRadioButtonNumSym5 = new javax.swing.JRadioButton();
         jRadioButtonNumSym6 = new javax.swing.JRadioButton();
-        jRadioButtonNumSym_Rehearsal = new javax.swing.JRadioButton();
         commonCombo = new javax.swing.JPanel();
         comComboResetButton = new javax.swing.JButton();
         jLabelComComboImg = new javax.swing.JLabel();
@@ -3879,11 +3881,16 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Select Test Type");
-
         buttonGroupABCSessionType.add(jRadioButtonABCRehearsal);
         jRadioButtonABCRehearsal.setText("Rehearsal");
+        jRadioButtonABCRehearsal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonABCRehearsalActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel7.setText("Select Test Type");
 
         javax.swing.GroupLayout abcsLayout = new javax.swing.GroupLayout(abcs);
         abcs.setLayout(abcsLayout);
@@ -3983,6 +3990,9 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        buttonGroupNumSymSessionType.add(jRadioButtonNumSym_Rehearsal);
+        jRadioButtonNumSym_Rehearsal.setText("Rehearsal");
+
         buttonGroupNumSym.add(jRadioButtonNumSym1);
         jRadioButtonNumSym1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButtonNumSym1.setText(Ans1);
@@ -4037,9 +4047,6 @@ public class MainJFrame extends javax.swing.JFrame {
                 jRadioButtonNumSym6ActionPerformed(evt);
             }
         });
-
-        buttonGroupNumSymSessionType.add(jRadioButtonNumSym_Rehearsal);
-        jRadioButtonNumSym_Rehearsal.setText("Rehearsal");
 
         javax.swing.GroupLayout numSymLayout = new javax.swing.GroupLayout(numSym);
         numSym.setLayout(numSymLayout);
@@ -4536,9 +4543,9 @@ public class MainJFrame extends javax.swing.JFrame {
         words_BLayout.setVerticalGroup(
             words_BLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(words_BLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(words_BLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(words_BLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabelWord_B_Img, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButtonWord_B_1)
@@ -4553,7 +4560,6 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButtonWord_B_6))
                     .addGroup(words_BLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel26)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jRadioButtonWords_B_Baseline1)
@@ -5673,7 +5679,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Check if generic baseline has been set true by user
         // working with ANY tab.
-        if (baseline == true) {
+        if (baseline == true || rehearsal == true) {
 
             resetTabABC();
 
@@ -5684,6 +5690,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
             baselineABC = false;
             trainingABC = true;
+            rehearsalABC = false;
 
             // Set test type string.
             testType = "Training";
@@ -5691,6 +5698,7 @@ public class MainJFrame extends javax.swing.JFrame {
             // Set generic flags.
             baseline = false;
             training = true;
+            rehearsal = false;
 
             // Assign image and buttons.
             assignABCImgChoices();
@@ -5709,7 +5717,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Check if generic training has been set true by user
         // working with ANY tab
-        if (training == true) {
+        if (training == true || rehearsal == true) {
 
             resetTabABC();
 
@@ -5717,8 +5725,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 + "\nchange from Training to Baseline.", "Select Baseline Again", JOptionPane.INFORMATION_MESSAGE);
 
         } else {
+            
             baselineABC = true;
             trainingABC = false;
+            rehearsalABC = false;
 
             // Set test type string.
             testType = "Baseline";
@@ -5726,6 +5736,8 @@ public class MainJFrame extends javax.swing.JFrame {
             // Set generic flags.
             baseline = true;
             training = false;
+            rehearsal = false;
+            
             // Assign image and buttons
             assignABCImgChoices();
 
@@ -5736,6 +5748,8 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jRadioButtonABCBaselineActionPerformed
 
+    
+    
     private void jRadioButtonABC6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonABC6ActionPerformed
         // TODO add your handling code here:
         processAns(Ans6);
@@ -5952,6 +5966,46 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         resetTabComCombo();
     }//GEN-LAST:event_comComboResetButtonActionPerformed
+
+    private void jRadioButtonABCRehearsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonABCRehearsalActionPerformed
+        // TODO add your handling code here:
+        
+        // Check if generic baseline has been set true by user
+        // working with ANY tab.
+        if (baseline == true || training == true) {
+
+            resetTabABC();
+
+            JOptionPane.showMessageDialog(this, "Select Rehearsal again if you wish to "
+                + "\nrehearse.", "Select Rehearsal Again", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+
+            baselineABC = false;
+            trainingABC = false;
+            rehearsalABC = true;
+
+            // Set test type string.
+            testType = "Training";
+
+            // Set generic flags.
+            baseline = false;
+            training = false;
+            rehearsal = true;
+
+            // Assign image and buttons.
+            assignABCImgChoices();
+
+            // Set questionAnswered flag as True to get first card.
+            questionAnswered = true;
+
+            loadFirstABCGroup();
+
+            getNextCard();
+
+        }
+        
+    }//GEN-LAST:event_jRadioButtonABCRehearsalActionPerformed
  
     private void resetTabABC() {
 
