@@ -5086,6 +5086,7 @@ public class MainJFrame extends javax.swing.JFrame {
             // Set generic flags.
             baseline = false;
             training = false;
+            rehearsal = false;
 
             // Assign image and buttons
             assignProbeChoices();
@@ -5986,7 +5987,7 @@ public class MainJFrame extends javax.swing.JFrame {
             rehearsalABC = true;
 
             // Set test type string.
-            testType = "Training";
+            testType = "Rehearsal";
 
             // Set generic flags.
             baseline = false;
@@ -5995,11 +5996,14 @@ public class MainJFrame extends javax.swing.JFrame {
 
             // Assign image and buttons.
             assignABCImgChoices();
+            
+            // Get rehearsal set of 10 cards.
+            initProbe();
+
+            Collections.shuffle(CurrentGrps_CardsList);
 
             // Set questionAnswered flag as True to get first card.
             questionAnswered = true;
-
-            loadFirstABCGroup();
 
             getNextCard();
 
@@ -6011,6 +6015,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         baselineABC = false;
         trainingABC = false;
+        rehearsalABC = false;
 
         // Clear test type button selection
         buttonGroupABCSessionType.clearSelection();
@@ -6176,6 +6181,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         baseline = false;
         training = false;
+        rehearsal = false;
 
         // Reset flags.
         // CardListAll set flag
@@ -6369,7 +6375,7 @@ public class MainJFrame extends javax.swing.JFrame {
     // Set group name for message boxes and record.
     private void setGroupName() {
         
-                if (CurrentTab.equals("ABC")) {
+        if (CurrentTab.equals("ABC")) {
 
             groupName = "ABCs";
 
@@ -6407,9 +6413,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void getNextCard() {
 
-        // Reset answer buttons.
-        resetAnswerButtons();
-
         if (file == null) {
 
             JOptionPane.showMessageDialog(this, "PLEASE GO TO CREATE LOG TAB\n"
@@ -6418,11 +6421,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         }
 
-        if ((training == false) && (baseline == false)) {
+        if ((training == false) && (baseline == false) && (rehearsal == false)) {
 
-            JOptionPane.showMessageDialog(this, "PLEASE SELECT BASELINE OR"
-                    + " TRAINING!",
-                    "SELECT BASELINE OR TRAINING!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "PLEASE SELECT BASELINE,"
+                    + "/nTRAINING OR REHEARSAL!",
+                    "SELECT BASELINE, TRAINING OR REHEARSAL!", JOptionPane.ERROR_MESSAGE);
 
         }
 
@@ -6437,6 +6440,12 @@ public class MainJFrame extends javax.swing.JFrame {
             displayBaselineCards();
 
         }
+        
+        if (rehearsal == true){
+            
+            rehearsalCards();
+        }
+        
 
     }
 
@@ -6581,7 +6590,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         presentationCountEqualsTarget = false;
         
-                if (CurrentTab.equals("ABC")) {
+        if (CurrentTab.equals("ABC")) {
 
             addNextABCGrp();
 
@@ -6616,7 +6625,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void baselineCards() {
         // Select appropriate group for current tab.
         
-                if (CurrentTab.equals("ABC")) {
+        if (CurrentTab.equals("ABC")) {
 
             allABCGrp();
 
@@ -8218,8 +8227,18 @@ public class MainJFrame extends javax.swing.JFrame {
         // Reset ansRecorded flag.
         ansRecorded = false;
 
-        // Go directly to trainingCards() method to get next card.
-        trainingCards();
+        // Go directly to trainingCards() or rehearsalCards()
+        // method to get next card.
+        
+        if(training == true){
+        
+            trainingCards();
+        }
+        
+        if(rehearsal == true){
+        
+            rehearsalCards();
+        }
 
     }
 
@@ -8423,11 +8442,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         // Messages are turned on by selecting Training. Turned off by
         // Baseline and are off by default.
-        if ((Ans.equals(CurrentCard.getCorrectAns())) && (training == true)) {
+        if ((Ans.equals(CurrentCard.getCorrectAns())) && (training == true || rehearsal)) {
 
             rightAnsMsg();
 
-        } else if (training == true) {
+        } else if (training == true || rehearsal) {
 
             wrongAnsMsg();
 
@@ -9145,7 +9164,7 @@ public class MainJFrame extends javax.swing.JFrame {
         currentTabAns6Btn = jRadioButtonProbe6;
 
         // Method also loads first group of
-        // ABCs.
+        // Probe.
         initProbe();
 
         Collections.shuffle(CurrentGrps_CardsList);
@@ -9191,6 +9210,50 @@ public class MainJFrame extends javax.swing.JFrame {
 //            baselineCards();
 //            indexAll = 0;
 //        }
+
+        // This if statement should execute once per getNextCard()call.
+        if (((indexAll < CurrentGrps_CardsList.size()) && (questionAnswered == true))
+                || (indexAll == 0)) {
+
+            // Reset flag to false until next question answered.
+            questionAnswered = false;
+
+            CurrentCard = CurrentGrps_CardsList.get(indexAll);
+
+            displayCurrentCard();
+
+            indexAll++;
+        }
+
+        // Added questionAnswered flag to display card until user provides an
+        // answer. Initially the last card was not being captured because it 
+        // displayed to quickly for response.
+
+        if ((indexAll == CurrentGrps_CardsList.size()) && (questionAnswered == true)) {
+            JOptionPane.showMessageDialog(this, "This is the end of the"
+                    + " Probe test."
+                    + " Total number of flashcards: " + indexAll + ".",
+                    "End of Probe", JOptionPane.INFORMATION_MESSAGE);
+
+            JOptionPane.showMessageDialog(this, "TAB WILL NOW RESET!!",
+                    "TAB RESET", JOptionPane.INFORMATION_MESSAGE);
+
+            // This would be a good place to insert a method that would 
+            // in turn call the reset method for the currently active 
+            // tab.
+            genericReset();
+
+        }
+    
+    }
+
+    private void rehearsalCards() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        // Reset answer buttons.
+        resetAnswerButtons();
+
+        ansRecorded = false;
 
         // This if statement should execute once per getNextCard()call.
         if (((indexAll < CurrentGrps_CardsList.size()) && (questionAnswered == true))
