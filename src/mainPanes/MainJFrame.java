@@ -5996,7 +5996,7 @@ public class MainJFrame extends javax.swing.JFrame {
             assignABCImgChoices();
             
             // Get rehearsal set of 10 cards.
-            initProbe();
+            initRehearsalABC();
 
             Collections.shuffle(CurrentGrps_CardsList);
 
@@ -8881,6 +8881,49 @@ public class MainJFrame extends javax.swing.JFrame {
     
     }
     
+        private void initRehearsalABC() {
+                
+        // List to take all cards
+        List<FlashCard> cardListABCTabRehearsal;
+        cardListABCTabRehearsal = new ArrayList<FlashCard>();
+      
+        // Get all Common Combos.
+        allABCGrp();
+        
+        draw10Cards();
+        
+        // Add to cardListAllTab as scratch pad.
+        cardListABCTabRehearsal.addAll(CurrentGrps_CardsList);
+        
+//        // Get set A of Words.
+//        allWordsGrp();
+//        
+//        draw10Cards();
+//        
+//        // Add to cardListAllTab as scratch pad.
+//        cardListProbeTab.addAll(CurrentGrps_CardsList);
+//        
+//        // Get set B of Words.
+//        allWords_B_Grp();
+//        
+//        draw10Cards();
+//        
+//        // Add to cardListAllTab as scratch pad.
+//        cardListProbeTab.addAll(CurrentGrps_CardsList);
+//        
+//        // Get set C of Words.
+//        allWords_C_Grp();
+//        
+//        draw10Cards();
+//        
+//        // Add to cardListAllTab as scratch pad.
+//        cardListProbeTab.addAll(CurrentGrps_CardsList);
+        
+        // Set CurrentGrps_CardsList equal to cardListAllTab.
+        CurrentGrps_CardsList = cardListABCTabRehearsal;
+    
+    }
+    
     private void resetTabAll() {
      
         baselineAll = false;
@@ -9273,9 +9316,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         if ((indexAll == CurrentGrps_CardsList.size()) && (questionAnswered == true)) {
             JOptionPane.showMessageDialog(this, "This is the end of the"
-                    + " Probe test."
+                    + " Rehearsal."
                     + " Total number of flashcards: " + indexAll + ".",
-                    "End of Probe", JOptionPane.INFORMATION_MESSAGE);
+                    "End of Rehearsal", JOptionPane.INFORMATION_MESSAGE);
 
             JOptionPane.showMessageDialog(this, "TAB WILL NOW RESET!!",
                     "TAB RESET", JOptionPane.INFORMATION_MESSAGE);

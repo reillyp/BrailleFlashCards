@@ -852,6 +852,7 @@
                               <Component id="jRadioButtonComCombo1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jRadioButtonComCombo2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="jRadioButtonComCombo3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="jRadioButtonComCombo4" min="-2" max="-2" attributes="0"/>
