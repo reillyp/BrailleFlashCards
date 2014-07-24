@@ -374,26 +374,41 @@ public class MainJFrame extends javax.swing.JFrame {
     // CurrentGrps_CardsList.
     String CurrentTab;
     String LastGrpAdded;
+    
     // Flags Set by Baseline and Training buttons.
     boolean baselineABC = false;
     boolean trainingABC = false;
     boolean rehearsalABC = false;
+    
     boolean baselineNumSym = false;
     boolean trainingNumSym = false;
+    boolean rehearsalNumSym = false;
+    
     boolean baselineComCombo = false;
     boolean trainingComCombo = false;
+    boolean rehearsalComCombo = false;
+    
     boolean baselineWords = false;
     boolean trainingWords = false;
+    boolean rehearsalWords = false;
+    
     boolean baselineWords_B = false;
     boolean trainingWords_B = false;
+    boolean rehearsalWords_B = false;
+    
     boolean baselineWords_C = false;
     boolean trainingWords_C = false;
+    boolean rehearsalWords_C = false;
+    
     boolean baselineAll = false;
     boolean trainingAll = false;
+    boolean rehearsalAll = false;
+    
     // Generic Baseline and Training flags.
     boolean baseline = false;
     boolean training = false;
     boolean rehearsal = false;
+    
     // Test type used to record Baseline or Training
     String testType;
     // CardListAll set flag
@@ -6051,6 +6066,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         baselineNumSym = false;
         trainingNumSym = false;
+        rehearsalNumSym = false;
 
         // Clear test type button selection
         buttonGroupNumSymSessionType.clearSelection();
@@ -6065,6 +6081,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         baselineNumSym = false;
         trainingNumSym = false;
+        rehearsalComCombo = false;
 
         // Clear test type button selection
         buttonGroupComComboSessionType.clearSelection();
@@ -6079,6 +6096,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         baselineWords = false;
         trainingWords = false;
+        rehearsalWords = false;
 
         // Clear test type button selection
         buttonGroupWordsSessionType.clearSelection();
@@ -6093,6 +6111,7 @@ public class MainJFrame extends javax.swing.JFrame {
     
         baselineWords_B = false;
         trainingWords_B = false;
+        rehearsalWords_B = false;
 
         // Clear test type button selection
         buttonGroupWords_B_SessionType.clearSelection();
@@ -8895,7 +8914,7 @@ public class MainJFrame extends javax.swing.JFrame {
         
         draw10Cards();
         
-        // Add to cardListAllTab as scratch pad.
+        // Add to cardListABCTabRehearsal as scratch pad.
         cardListABCTabRehearsal.addAll(CurrentGrps_CardsList);
         
 //        // Get set A of Words.
@@ -8927,6 +8946,59 @@ public class MainJFrame extends javax.swing.JFrame {
     
     }
     
+    // Determine which tab rehearsal has been selected
+    // and add 10 cards each from the preceding tabs.    
+    private void addMoreRehearsalCards() {
+                
+        // List to take cards
+        List<FlashCard> cardListAddMoreRehearsal;
+        cardListAddMoreRehearsal = new ArrayList<FlashCard>();
+      
+        // Get all Common Combos.
+        allABCGrp();
+        
+        draw10Cards();
+        
+        // Add to cardListABCTabRehearsal as scratch pad.
+        cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
+        
+        // Get set A of Words.
+        allWordsGrp();
+        
+        draw10Cards();
+        
+        // Add to cardListAllTab as scratch pad.
+        cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
+        
+        // Get set B of Words.
+        allWords_B_Grp();
+        
+        draw10Cards();
+        
+        // Add to cardListAllTab as scratch pad.
+        cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
+        
+        if((rehearsalABC == true) || (rehearsalABC == true)||
+           (rehearsalABC == true) || (rehearsalABC == true)||
+           (rehearsalABC == true) || (rehearsalABC == true))
+        {
+            // Get set C of Words.
+            allWords_C_Grp();
+
+            draw10Cards();
+
+            // Add to cardListAllTab as scratch pad.
+            cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
+
+            // Set CurrentGrps_CardsList equal to cardListAllTab.
+            CurrentGrps_CardsList = cardListAddMoreRehearsal;
+        }
+        
+        // Set CurrentGrps_CardsList equal to cardListAllTab.
+        CurrentGrps_CardsList = cardListAddMoreRehearsal;
+    
+    }    
+        
     private void resetTabAll() {
      
         baselineAll = false;
@@ -9168,6 +9240,7 @@ public class MainJFrame extends javax.swing.JFrame {
         //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         baselineWords_C = false;
         trainingWords_C = false;
+        rehearsalWords_C = false;
 
         // Clear test type button selection
         buttonGroupWords_C_SessionType.clearSelection();
@@ -9197,8 +9270,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void assignProbeChoices() {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    
-       
+           
         currentTabImgLabel = jLabelProbeImg;
         currentTabAns1Btn = jRadioButtonProbe1;
         currentTabAns2Btn = jRadioButtonProbe2;
