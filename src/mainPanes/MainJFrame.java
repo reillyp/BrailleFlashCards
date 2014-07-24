@@ -5986,6 +5986,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
             // Set test type string.
             testType = "Rehearsal";
+            
+            //Set Current Tab.
+            CurrentTab = "ABC";
 
             // Set generic flags.
             baseline = false;
@@ -9327,7 +9330,11 @@ public class MainJFrame extends javax.swing.JFrame {
             // in turn call the reset method for the currently active 
             // tab.
             genericReset();
-
+            
+            if(CurrentTab == "ABC" ){
+            
+                resetTabABC();
+            }
         }
     
     }
