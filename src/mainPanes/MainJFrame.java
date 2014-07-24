@@ -9331,7 +9331,7 @@ public class MainJFrame extends javax.swing.JFrame {
             // tab.
             genericReset();
             
-            if(CurrentTab == "ABC" ){
+            if("ABC".equals(CurrentTab) ){
             
                 resetTabABC();
             }
