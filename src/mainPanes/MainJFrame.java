@@ -6014,7 +6014,7 @@ public class MainJFrame extends javax.swing.JFrame {
             assignABCImgChoices();
             
             // Get rehearsal set of 10 cards.
-            initRehearsalABC();
+            initRehearsalCards();
 
             Collections.shuffle(CurrentGrps_CardsList);
 
@@ -8948,39 +8948,76 @@ public class MainJFrame extends javax.swing.JFrame {
     
     // Determine which tab rehearsal has been selected
     // and add 10 cards each from the preceding tabs.    
-    private void addMoreRehearsalCards() {
+    private void initRehearsalCards() {
                 
         // List to take cards
         List<FlashCard> cardListAddMoreRehearsal;
         cardListAddMoreRehearsal = new ArrayList<FlashCard>();
       
-        // Get all Common Combos.
-        allABCGrp();
+       // Add 10 from ABCs whenever any tab is rehearsed. 
+       if((rehearsalABC == true) || (rehearsalNumSym == true)||
+         (rehearsalComCombo == true) || (rehearsalWords == true)||
+         (rehearsalWords_B == true) || (rehearsalWords_C == true))
+       {
+            // Get all ABCs.
+            allABCGrp();
+
+            draw10Cards();
+
+            // Add to cardListABCTabRehearsal as scratch pad.
+            cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
+       }
+       
+       if((rehearsalNumSym == true) || (rehearsalComCombo == true) 
+         || (rehearsalWords == true)|| (rehearsalWords_B == true) 
+         || (rehearsalWords_C == true))
+       {
+            // Get all ABCs.
+            allNumSymGrp();
+
+            draw10Cards();
+
+            // Add to cardListABCTabRehearsal as scratch pad.
+            cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
+       }
+             
+       // Get all of set Common Combos.
+       if(  (rehearsalComCombo == true) || (rehearsalWords == true) 
+          || (rehearsalWords_B == true) || (rehearsalWords_C == true) )
         
-        draw10Cards();
-        
-        // Add to cardListABCTabRehearsal as scratch pad.
-        cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
-        
-        // Get set A of Words.
-        allWordsGrp();
-        
-        draw10Cards();
-        
-        // Add to cardListAllTab as scratch pad.
-        cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
+        {       
+            allComComboGrp();
+
+            draw10Cards();
+
+            // Add to cardListAllTab as scratch pad.
+            cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
+        }
+       
+       if( (rehearsalWords == true) || (rehearsalWords_B == true) 
+           || (rehearsalWords_C == true) )
+       {
+            // Get all ABCs.
+            allWordsGrp();
+
+            draw10Cards();
+
+            // Add to cardListABCTabRehearsal as scratch pad.
+            cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
+       }
         
         // Get set B of Words.
-        allWords_B_Grp();
+        if((rehearsalWords_B == true) || (rehearsalWords_C == true))
+        {        
+            allWords_B_Grp();
+
+            draw10Cards();
+
+            // Add to cardListAllTab as scratch pad.
+            cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
+        }
         
-        draw10Cards();
-        
-        // Add to cardListAllTab as scratch pad.
-        cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
-        
-        if((rehearsalABC == true) || (rehearsalABC == true)||
-           (rehearsalABC == true) || (rehearsalABC == true)||
-           (rehearsalABC == true) || (rehearsalABC == true))
+        if(rehearsalWords_C == true)
         {
             // Get set C of Words.
             allWords_C_Grp();
@@ -8989,9 +9026,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
             // Add to cardListAllTab as scratch pad.
             cardListAddMoreRehearsal.addAll(CurrentGrps_CardsList);
-
-            // Set CurrentGrps_CardsList equal to cardListAllTab.
-            CurrentGrps_CardsList = cardListAddMoreRehearsal;
         }
         
         // Set CurrentGrps_CardsList equal to cardListAllTab.
