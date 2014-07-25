@@ -689,6 +689,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Rehearsal"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonNumSym_RehearsalActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="jRadioButtonNumSym1">
               <Properties>
@@ -1041,6 +1044,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Rehearsal"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonCommCombo_RehearsalActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1285,6 +1291,9 @@
                 <Property name="text" type="java.lang.String" value="Rehearsal"/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonWord_A_RehearsalActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1528,6 +1537,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Rehearsal"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonWord_B_RehearsalActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1771,6 +1783,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Rehearsal"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonWord_C_RehearsalActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

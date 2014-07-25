@@ -4007,6 +4007,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         buttonGroupNumSymSessionType.add(jRadioButtonNumSym_Rehearsal);
         jRadioButtonNumSym_Rehearsal.setText("Rehearsal");
+        jRadioButtonNumSym_Rehearsal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonNumSym_RehearsalActionPerformed(evt);
+            }
+        });
 
         buttonGroupNumSym.add(jRadioButtonNumSym1);
         jRadioButtonNumSym1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -4220,6 +4225,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         buttonGroupComComboSessionType.add(jRadioButtonCommCombo_Rehearsal);
         jRadioButtonCommCombo_Rehearsal.setText("Rehearsal");
+        jRadioButtonCommCombo_Rehearsal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonCommCombo_RehearsalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout commonComboLayout = new javax.swing.GroupLayout(commonCombo);
         commonCombo.setLayout(commonComboLayout);
@@ -4259,6 +4269,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addComponent(jRadioButtonComCombo1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButtonComCombo2)
+                        .addGap(0, 0, 0)
                         .addComponent(jRadioButtonComCombo3)
                         .addGap(0, 0, 0)
                         .addComponent(jRadioButtonComCombo4)
@@ -4377,6 +4388,11 @@ public class MainJFrame extends javax.swing.JFrame {
         buttonGroupWordsSessionType.add(jRadioButtonWord_A_Rehearsal);
         jRadioButtonWord_A_Rehearsal.setText("Rehearsal");
         jRadioButtonWord_A_Rehearsal.setToolTipText("");
+        jRadioButtonWord_A_Rehearsal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonWord_A_RehearsalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout wordsLayout = new javax.swing.GroupLayout(words);
         words.setLayout(wordsLayout);
@@ -4529,6 +4545,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         buttonGroupWords_B_SessionType.add(jRadioButtonWord_B_Rehearsal);
         jRadioButtonWord_B_Rehearsal.setText("Rehearsal");
+        jRadioButtonWord_B_Rehearsal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonWord_B_RehearsalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout words_BLayout = new javax.swing.GroupLayout(words_B);
         words_B.setLayout(words_BLayout);
@@ -4681,6 +4702,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         buttonGroupWords_C_SessionType.add(jRadioButtonWord_C_Rehearsal);
         jRadioButtonWord_C_Rehearsal.setText("Rehearsal");
+        jRadioButtonWord_C_Rehearsal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonWord_C_RehearsalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout words_CLayout = new javax.swing.GroupLayout(words_C);
         words_C.setLayout(words_CLayout);
@@ -5282,7 +5308,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Check if generic training has been set true by user
         // working with ANY tab.
-        if (baseline == true) {
+        if (baseline == true || rehearsal == true) {
 
             resetTabWords_C();
 
@@ -5319,7 +5345,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Check if generic training has been set true by user
         // working with ANY tab.
-        if (training == true) {
+        if (training == true || rehearsal == true) {
 
             resetTabWords_C();
 
@@ -5392,7 +5418,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Check if generic training has been set true by user
         // working with ANY tab.
-        if (baseline == true) {
+        if (baseline == true || rehearsal == true) {
 
             resetTabWords_B();
 
@@ -5428,7 +5454,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Check if generic training has been set true by user
         // working with ANY tab.
-        if (training == true) {
+        if (training == true || rehearsal == true) {
 
             resetTabWords_B();
 
@@ -5504,7 +5530,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Check if generic baseline has been set true by user
         // working with ANY tab.
-        if (baseline == true) {
+        if (baseline == true || rehearsal == true) {
 
             resetTabWords();
 
@@ -5539,7 +5565,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void jRadioButtonWordsBaselineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonWordsBaselineActionPerformed
         // TODO add your handling code here:
 
-        if (training == true) {
+        if (training == true || rehearsal == true) {
 
             resetTabWords();
 
@@ -5613,7 +5639,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Check if generic training has been set true by user
         // working with ANY tab.
-        if (baseline == true) {
+        if (baseline == true || rehearsal == true) {
 
             resetTabNumSym();
 
@@ -5649,7 +5675,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Check if generic training has been set true by user
         // working with ANY tab.
-        if (training == true) {
+        if (training == true || rehearsal == true) {
 
             resetTabNumSym();
 
@@ -5913,7 +5939,7 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Check if generic baseline has been set true by user
         // working with ANY tab.
-        if (baseline == true) {
+        if (baseline == true || rehearsal == true) {
 
             resetTabComCombo();
 
@@ -6026,6 +6052,231 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jRadioButtonABCRehearsalActionPerformed
+
+    private void jRadioButtonNumSym_RehearsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNumSym_RehearsalActionPerformed
+        // TODO add your handling code here:
+        
+        // Check if generic baseline has been set true by user
+        // working with ANY tab.
+        if (baseline == true || training == true) {
+
+            resetTabNumSym();
+
+            JOptionPane.showMessageDialog(this, "Select Rehearsal again if you wish to "
+                + "\nrehearse.", "Select Rehearsal Again", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+
+            baselineNumSym = false;
+            trainingNumSym = false;
+            rehearsalNumSym = true;
+
+            // Set test type string.
+            testType = "Rehearsal";
+            
+            //Set Current Tab.
+            CurrentTab = "NumSym";
+
+            // Set generic flags.
+            baseline = false;
+            training = false;
+            rehearsal = true;
+
+            // Assign image and buttons.
+            assignNumSymImgChoices();
+            
+            // Get rehearsal set of 10 cards.
+            initRehearsalCards();
+
+            Collections.shuffle(CurrentGrps_CardsList);
+
+            // Set questionAnswered flag as True to get first card.
+            questionAnswered = true;
+
+            getNextCard();
+        }
+    }//GEN-LAST:event_jRadioButtonNumSym_RehearsalActionPerformed
+
+    private void jRadioButtonCommCombo_RehearsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonCommCombo_RehearsalActionPerformed
+        // TODO add your handling code here:
+        
+        // Check if generic baseline has been set true by user
+        // working with ANY tab.
+        if (baseline == true || training == true) {
+
+            resetTabComCombo();
+
+            JOptionPane.showMessageDialog(this, "Select Rehearsal again if you wish to "
+                + "\nrehearse.", "Select Rehearsal Again", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+
+            baselineComCombo = false;
+            trainingComCombo = false;
+            rehearsalComCombo = true;
+
+            // Set test type string.
+            testType = "Rehearsal";
+            
+            //Set Current Tab.
+            CurrentTab = "ComCombo";
+
+            // Set generic flags.
+            baseline = false;
+            training = false;
+            rehearsal = true;
+
+            // Assign image and buttons.
+            assignComComboImgChoices();
+            
+            // Get rehearsal set of 10 cards.
+            initRehearsalCards();
+
+            Collections.shuffle(CurrentGrps_CardsList);
+
+            // Set questionAnswered flag as True to get first card.
+            questionAnswered = true;
+
+            getNextCard();
+        }
+
+    }//GEN-LAST:event_jRadioButtonCommCombo_RehearsalActionPerformed
+
+    private void jRadioButtonWord_A_RehearsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonWord_A_RehearsalActionPerformed
+        // TODO add your handling code here:
+        
+        // Check if generic baseline has been set true by user
+        // working with ANY tab.
+        if (baseline == true || training == true) {
+
+            resetTabWords();
+
+            JOptionPane.showMessageDialog(this, "Select Rehearsal again if you wish to "
+                + "\nrehearse.", "Select Rehearsal Again", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+
+            baselineWords = false;
+            trainingWords = false;
+            rehearsalWords = true;
+
+            // Set test type string.
+            testType = "Rehearsal";
+            
+            //Set Current Tab.
+            CurrentTab = "Words_A";
+
+            // Set generic flags.
+            baseline = false;
+            training = false;
+            rehearsal = true;
+
+            // Assign image and buttons.
+            assignWordImgChoices();
+            
+            // Get rehearsal set of 10 cards.
+            initRehearsalCards();
+
+            Collections.shuffle(CurrentGrps_CardsList);
+
+            // Set questionAnswered flag as True to get first card.
+            questionAnswered = true;
+
+            getNextCard();
+        }
+        
+    }//GEN-LAST:event_jRadioButtonWord_A_RehearsalActionPerformed
+
+    private void jRadioButtonWord_B_RehearsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonWord_B_RehearsalActionPerformed
+        // TODO add your handling code here:
+       
+        // Check if generic baseline has been set true by user
+        // working with ANY tab.
+        if (baseline == true || training == true) {
+
+            resetTabWords_B();
+
+            JOptionPane.showMessageDialog(this, "Select Rehearsal again if you wish to "
+                + "\nrehearse.", "Select Rehearsal Again", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+
+            baselineWords_B = false;
+            trainingWords_B = false;
+            rehearsalWords_B = true;
+
+            // Set test type string.
+            testType = "Rehearsal";
+            
+            //Set Current Tab.
+            CurrentTab = "Words_B";
+
+            // Set generic flags.
+            baseline = false;
+            training = false;
+            rehearsal = true;
+
+            // Assign image and buttons.
+            assignWords_B_ImgChoices();
+            
+            // Get rehearsal set of 10 cards.
+            initRehearsalCards();
+
+            Collections.shuffle(CurrentGrps_CardsList);
+
+            // Set questionAnswered flag as True to get first card.
+            questionAnswered = true;
+
+            getNextCard();
+        }
+        
+        
+    }//GEN-LAST:event_jRadioButtonWord_B_RehearsalActionPerformed
+
+    private void jRadioButtonWord_C_RehearsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonWord_C_RehearsalActionPerformed
+        // TODO add your handling code here:
+  
+        // Check if generic baseline has been set true by user
+        // working with ANY tab.
+        if (baseline == true || training == true) {
+
+            resetTabWords_C();
+
+            JOptionPane.showMessageDialog(this, "Select Rehearsal again if you wish to "
+                + "\nrehearse.", "Select Rehearsal Again", JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+
+            baselineWords_C = false;
+            trainingWords_C = false;
+            rehearsalWords_C = true;
+
+            // Set test type string.
+            testType = "Rehearsal";
+            
+            //Set Current Tab.
+            CurrentTab = "Words_C";
+
+            // Set generic flags.
+            baseline = false;
+            training = false;
+            rehearsal = true;
+
+            // Assign image and buttons.
+            assignWords_C_ImgChoices();
+            
+            // Get rehearsal set of 10 cards.
+            initRehearsalCards();
+
+            Collections.shuffle(CurrentGrps_CardsList);
+
+            // Set questionAnswered flag as True to get first card.
+            questionAnswered = true;
+
+            getNextCard();
+        }      
+        
+    }//GEN-LAST:event_jRadioButtonWord_C_RehearsalActionPerformed
  
     private void resetTabABC() {
 
